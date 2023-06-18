@@ -17,6 +17,57 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.res = 0;
+  }
+  add(num) {
+    this.num = num;
+    return (this.res = this.num + this.res);
+  }
+  subtract(num) {
+    this.num = num;
+    return (this.res = this.res - this.num);
+  }
+  multiply(num) {
+    this.num = num;
+    if (this.res === 0 && num !== 0) {
+      this.res = 1;
+    }
+    return (this.res = this.res * this.num);
+  }
+  clear() {
+    return (this.res = 0);
+  }
 
+  divide(num) {
+    this.num = num;
+
+    if (this.num !== 0) {
+      return (this.res /= this.num);
+    } else {
+      throw new Error("invalid number");
+    }
+  }
+  calculate(num) {
+    this.num = eval(num);
+    console.log(this.num);
+    if (this.num !== Infinity) {
+      return (this.res = this.res + this.num);
+    } else {
+      throw new Error("invalid");
+    }
+  }
+  getResult() {
+    return this.res;
+  }
+}
+const ans = new Calculator();
+
+console.log(ans.calculate("10 / 2"));
+// console.log(ans.subtract(3));
+// console.log(ans.multiply(2));
+// console.log(ans.add(3));
+
+console.log(ans.getResult(), "final");
 module.exports = Calculator;
